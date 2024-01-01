@@ -1,13 +1,13 @@
+import os
+
 import telebot
-from telebot import types
-token='6677943038:AAFthSBobYWh-QTjTTpNN3ygtq_X4LxfAIc'
-bot=telebot.TeleBot(token)
-@bot.message_handler(commands=['start'])
-def start_message(message):
-	bot.send_message(message.chat.id,'Привет')
-@bot.message_handler(commands=['button'])
-def button_message(message):
-	markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
-	item1=types.KeyboardButton("Кнопка")
-  markup.add(item1)																																					bot.send_message(message.chat.id,'Выберите что вам надо',reply_markup=markup)
-bot.infinity_polling()
+
+BOT_TOKEN = os.environ.get('6677943038:AAFthSBobYWh-QTjTTpNN3ygtq_X4LxfAIc')
+
+bot = telebot.TeleBot(BOT_TOKEN)
+@bot.message_handler(commands=['start', 'hello'])
+def send_welcome(message):
+    bot.reply_to(message, "Howdy, how are you doing?")
+@bot.message_handler(func=lambda msg: True)
+def echo_all(message):
+    bot.reply_to(message, message.text)
