@@ -1,0 +1,100 @@
+[
+    {
+        "label": "telebot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "telebot",
+        "description": "telebot",
+        "detail": "telebot",
+        "documentation": {}
+    },
+    {
+        "label": "types",
+        "importPath": "telebot",
+        "description": "telebot",
+        "isExtraImport": true,
+        "detail": "telebot",
+        "documentation": {}
+    },
+    {
+        "label": "start",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def start(message):\n        mess = f\"Привет, <b>{message.from_user.first_name}</b>\"\n        bot.send_message(message.chat.id, mess, parse_mode=\"html\")\n@bot.message_handler(content_types=[\"text\"])\ndef start(message):\n    if message.text == \"/reg\":\n        bot.send_message(message.from_user.id, \"Как тебя зовут?\", parse_mode=\"html\")\n        bot.register_next_step_handler(\n            message, get_name)  # следующий шаг – функция get_name\n    else:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "start",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def start(message):\n    if message.text == \"/reg\":\n        bot.send_message(message.from_user.id, \"Как тебя зовут?\", parse_mode=\"html\")\n        bot.register_next_step_handler(\n            message, get_name)  # следующий шаг – функция get_name\n    else:\n        bot.send_message(message.from_user.id, \"Напиши /reg\")\ndef get_name(message):  # получаем фамилию\n    global name\n    name = message.text",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_name",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_name(message):  # получаем фамилию\n    global name\n    name = message.text\n    bot.send_message(message.from_user.id, \"Какая у тебя фамилия?\")\n    bot.register_next_step_handler(message, get_surname)\ndef get_surname(message):\n    global surname\n    surname = message.text\n    bot.send_message(message.from_user.id, \"Сколько тебе лет?\")\n    bot.register_next_step_handler(message, get_age)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_surname",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_surname(message):\n    global surname\n    surname = message.text\n    bot.send_message(message.from_user.id, \"Сколько тебе лет?\")\n    bot.register_next_step_handler(message, get_age)\ndef get_age(message):\n    global age\n    while age == 0:\n        try:\n            age = int(message.text)  # проверяем, что возраст введен корректно",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_age",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_age(message):\n    global age\n    while age == 0:\n        try:\n            age = int(message.text)  # проверяем, что возраст введен корректно\n        except Exception:\n            bot.send_message(message.from_user.id, \"Цифрами, пожалуйста\")\n        keyboard = types.InlineKeyboardMarkup()\n        key_yes = types.InlineKeyboardButton(text='Да', callback_data='yes')\n        keyboard.add(key_yes) #добавляем кнопку в клавиатуру",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "callback_worker",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def callback_worker(call):\n    if call.data == \"yes\":\n        ...\n        bot.send_message(call.message.chat.id, \"Запомню :)\")\n    elif call.data == \"no\":\n        ...  # переспрашиваем\nbot.polling(none_stop=True)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "bot",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "bot = telebot.TeleBot(\"6677943038:AAFthSBobYWh-QTjTTpNN3ygtq_X4LxfAIc\")\nname = ''\nsurname =''\nage = 0\n@bot.message_handler(commands=[\"start\"])\ndef start(message):\n        mess = f\"Привет, <b>{message.from_user.first_name}</b>\"\n        bot.send_message(message.chat.id, mess, parse_mode=\"html\")\n@bot.message_handler(content_types=[\"text\"])\ndef start(message):",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "name",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "name = ''\nsurname =''\nage = 0\n@bot.message_handler(commands=[\"start\"])\ndef start(message):\n        mess = f\"Привет, <b>{message.from_user.first_name}</b>\"\n        bot.send_message(message.chat.id, mess, parse_mode=\"html\")\n@bot.message_handler(content_types=[\"text\"])\ndef start(message):\n    if message.text == \"/reg\":",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "age",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "age = 0\n@bot.message_handler(commands=[\"start\"])\ndef start(message):\n        mess = f\"Привет, <b>{message.from_user.first_name}</b>\"\n        bot.send_message(message.chat.id, mess, parse_mode=\"html\")\n@bot.message_handler(content_types=[\"text\"])\ndef start(message):\n    if message.text == \"/reg\":\n        bot.send_message(message.from_user.id, \"Как тебя зовут?\", parse_mode=\"html\")\n        bot.register_next_step_handler(",
+        "detail": "main",
+        "documentation": {}
+    }
+]
