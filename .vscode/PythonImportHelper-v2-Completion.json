@@ -21,7 +21,16 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def start(message):\n        mess = f\"Привет, <b>{message.from_user.first_name}</b>\"\n        bot.send_message(message.chat.id, mess, parse_mode=\"html\")\n@bot.message_handler(content_types=[\"text\"])\ndef start(message):\n    if message.text == \"/reg\":\n        bot.send_message(message.from_user.id, \"Как тебя зовут?\", parse_mode=\"html\")\n        bot.register_next_step_handler(\n            message, get_name)  # следующий шаг – функция get_name\n    else:",
+        "peekOfCode": "def start(message):\n    markup = types.InlineKeyboardMarkup()\n    button1 = types.InlineKeyboardButton(\"сайт\", url='https:google.com')\n    markup.add(button1)\n    bot.send_message(message.chat.id, \"Привет, {0.first_name}! Нажми на кнопку замовити)\".format(message.from_user), reply_markup=markup)kup) # pyright:ignore\n@bot.message_handler(content_types=['text'])\ndef func(message):\n    if(message.text == \"👋 Поздороваться\"):\n        bot.send_message(message.chat.id, text=\"Привеет.. какой товар интересует?)\")\n    elif(message.text == \"❓ Задать вопрос\"):",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "func",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def func(message):\n    if(message.text == \"👋 Поздороваться\"):\n        bot.send_message(message.chat.id, text=\"Привеет.. какой товар интересует?)\")\n    elif(message.text == \"❓ Задать вопрос\"):\n        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)\n        btn1 = types.KeyboardButton(\"Как меня зовут?\")\n        btn2 = types.KeyboardButton(\"Что я могу?\")\n        back = types.KeyboardButton(\"Вернуться в главное меню\")\n        markup.add(btn1, btn2, back)\n        bot.send_message(message.chat.id, text=\"Задай мне вопрос\", reply_markup=markup)",
         "detail": "main",
         "documentation": {}
     },
@@ -30,7 +39,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def start(message):\n    if message.text == \"/reg\":\n        bot.send_message(message.from_user.id, \"Как тебя зовут?\", parse_mode=\"html\")\n        bot.register_next_step_handler(\n            message, get_name)  # следующий шаг – функция get_name\n    else:\n        bot.send_message(message.from_user.id, \"Напиши /reg\")\ndef get_name(message):  # получаем фамилию\n    global name\n    name = message.text",
+        "peekOfCode": "def start(message):\n    if message.text == \"/reg\":\n        bot.send_message(message.from_user.id, \"Как тебя зовут?\")\n        bot.register_next_step_handler(message, get_name)  # следующий шаг – get_name\n    else:\n        bot.send_message(message.from_user.id, \"Напиши /reg\")\ndef get_name(message):  # получаем фамилию\n    global name\n    name = message.text\n    bot.send_message(message.from_user.id, \"Какая у тебя фамилия?\")",
         "detail": "main",
         "documentation": {}
     },
@@ -57,7 +66,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def get_age(message):\n    global age\n    while age == 0:\n        try:\n            age = int(message.text)  # проверяем, что возраст введен корректно\n        except Exception:\n            bot.send_message(message.from_user.id, \"Цифрами, пожалуйста\")\n        keyboard = types.InlineKeyboardMarkup()\n        key_yes = types.InlineKeyboardButton(text='Да', callback_data='yes')\n        keyboard.add(key_yes) #добавляем кнопку в клавиатуру",
+        "peekOfCode": "def get_age(message):\n    global age\n    while age == 0:\n        try:\n            age = int(message.text)  # проверяем, что возраст введен корректно\n        except Exception:\n            bot.send_message(message.from_user.id, \"Цифрами, пожалуйста\")\n        keyboard = types.InlineKeyboardMarkup()\n        key_yes = types.InlineKeyboardButton(text=\"Да\", callback_data=\"yes\")\n        keyboard.add(key_yes)  # добавляем кнопку в клавиатуру",
         "detail": "main",
         "documentation": {}
     },
@@ -66,7 +75,16 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def callback_worker(call):\n    if call.data == \"yes\":\n        ...\n        bot.send_message(call.message.chat.id, \"Запомню :)\")\n    elif call.data == \"no\":\n        ...  # переспрашиваем\nbot.polling(none_stop=True)",
+        "peekOfCode": "def callback_worker(call):\n    if call.data == \"yes\":\n        ...\n        bot.send_message(call.message.chat.id, \"Запомню : )\")\n    elif call.data == \"no\":\n        ...  # переспрашиваем\nbot.polling(none_stop=True, interval=0)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "token",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "token = \"\"\nbot = telebot.TeleBot(\"6677943038:AAFthSBobYWh-QTjTTpNN3ygtq_X4LxfAIc\")\n@bot.message_handler(commands=['start']) #создаем команду\ndef start(message):\n    markup = types.InlineKeyboardMarkup()\n    button1 = types.InlineKeyboardButton(\"сайт\", url='https:google.com')\n    markup.add(button1)\n    bot.send_message(message.chat.id, \"Привет, {0.first_name}! Нажми на кнопку замовити)\".format(message.from_user), reply_markup=markup)kup) # pyright:ignore\n@bot.message_handler(content_types=['text'])\ndef func(message):",
         "detail": "main",
         "documentation": {}
     },
@@ -75,7 +93,7 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "bot = telebot.TeleBot(\"6677943038:AAFthSBobYWh-QTjTTpNN3ygtq_X4LxfAIc\")\nname = ''\nsurname =''\nage = 0\n@bot.message_handler(commands=[\"start\"])\ndef start(message):\n        mess = f\"Привет, <b>{message.from_user.first_name}</b>\"\n        bot.send_message(message.chat.id, mess, parse_mode=\"html\")\n@bot.message_handler(content_types=[\"text\"])\ndef start(message):",
+        "peekOfCode": "bot = telebot.TeleBot(\"6677943038:AAFthSBobYWh-QTjTTpNN3ygtq_X4LxfAIc\")\n@bot.message_handler(commands=['start']) #создаем команду\ndef start(message):\n    markup = types.InlineKeyboardMarkup()\n    button1 = types.InlineKeyboardButton(\"сайт\", url='https:google.com')\n    markup.add(button1)\n    bot.send_message(message.chat.id, \"Привет, {0.first_name}! Нажми на кнопку замовити)\".format(message.from_user), reply_markup=markup)kup) # pyright:ignore\n@bot.message_handler(content_types=['text'])\ndef func(message):\n    if(message.text == \"👋 Поздороваться\"):",
         "detail": "main",
         "documentation": {}
     },
@@ -84,7 +102,16 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "name = ''\nsurname =''\nage = 0\n@bot.message_handler(commands=[\"start\"])\ndef start(message):\n        mess = f\"Привет, <b>{message.from_user.first_name}</b>\"\n        bot.send_message(message.chat.id, mess, parse_mode=\"html\")\n@bot.message_handler(content_types=[\"text\"])\ndef start(message):\n    if message.text == \"/reg\":",
+        "peekOfCode": "name = \"\"\nsurname = \"\"\nage = 0\n@bot.message_handler(content_types=[\"text\"])\ndef start(message):\n    if message.text == \"/reg\":\n        bot.send_message(message.from_user.id, \"Как тебя зовут?\")\n        bot.register_next_step_handler(message, get_name)  # следующий шаг – get_name\n    else:\n        bot.send_message(message.from_user.id, \"Напиши /reg\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "surname",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "surname = \"\"\nage = 0\n@bot.message_handler(content_types=[\"text\"])\ndef start(message):\n    if message.text == \"/reg\":\n        bot.send_message(message.from_user.id, \"Как тебя зовут?\")\n        bot.register_next_step_handler(message, get_name)  # следующий шаг – get_name\n    else:\n        bot.send_message(message.from_user.id, \"Напиши /reg\")\ndef get_name(message):  # получаем фамилию",
         "detail": "main",
         "documentation": {}
     },
@@ -93,7 +120,7 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "age = 0\n@bot.message_handler(commands=[\"start\"])\ndef start(message):\n        mess = f\"Привет, <b>{message.from_user.first_name}</b>\"\n        bot.send_message(message.chat.id, mess, parse_mode=\"html\")\n@bot.message_handler(content_types=[\"text\"])\ndef start(message):\n    if message.text == \"/reg\":\n        bot.send_message(message.from_user.id, \"Как тебя зовут?\", parse_mode=\"html\")\n        bot.register_next_step_handler(",
+        "peekOfCode": "age = 0\n@bot.message_handler(content_types=[\"text\"])\ndef start(message):\n    if message.text == \"/reg\":\n        bot.send_message(message.from_user.id, \"Как тебя зовут?\")\n        bot.register_next_step_handler(message, get_name)  # следующий шаг – get_name\n    else:\n        bot.send_message(message.from_user.id, \"Напиши /reg\")\ndef get_name(message):  # получаем фамилию\n    global name",
         "detail": "main",
         "documentation": {}
     }
