@@ -21,7 +21,22 @@ def start(message):
         message.chat.id,
         "Привет,{0.first_name}! Нажми на кнопку замовити)".format(message.from_user),
         reply_markup=markup,
-    )  # pyright:ignore
+    )
+
+
+@bot.message_handler(commands=["hello"])  # создаем команду
+def start(message):
+    markup = types.InlineKeyboardMarkup()
+    button1 = types.InlineKeyboardButton(
+        "сайт",
+        url="https://github.com/eternnoir/pyTelegramBotAPI/blob/master/examples/telebot_bot/telebot_bot.py",
+    )
+    markup.add(button1)
+    bot.send_message(
+        message.chat.id,
+        "Привет,{0.first_name}!посмотреть товары)".format(message.from_user),
+        reply_markup=markup,
+    )
 
 
 @bot.message_handler(content_types=["text"])
