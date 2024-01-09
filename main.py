@@ -9,7 +9,7 @@ surname = ""
 age = 0
 
 
-@bot.message_handler(commands=["start"])  # создаем команду
+@bot.message_handler(commands=["start", "hello", "ПРИВІТ", ""])  # создаем команду
 def start(message):
     markup = types.InlineKeyboardMarkup()
     button1 = types.InlineKeyboardButton(
@@ -41,26 +41,32 @@ def start(message):
 
 @bot.message_handler(content_types=["text"])
 def func(message):
-    if message.text == "👋Поздороваться)":
-        bot.send_message(message.chat.id, text="Привеет.. какой товар интересует?)")
+    if message.text == "Привет":
+        bot.send_message(message.chat.id, text="Привет...👋 какой товар интересует❓)")
     elif message.text == "❓ Задать вопрос":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton("Как меня зовут?")
-        btn2 = types.KeyboardButton("Что я могу?")
-        back = types.KeyboardButton("Вернуться в главное меню")
+        btn1 = types.KeyboardButton("Смотреть товары")
+        btn2 = types.KeyboardButton("оплата/доставка")
+        btn3 = types.KeyboardButton("другой вопрос")
+        back = types.KeyboardButton("главное меню")
         markup.add(btn1, btn2, back)
         bot.send_message(message.chat.id, text="Задай мне вопрос", reply_markup=markup)
 
-    elif message.text == "Как меня зовут?":
-        bot.send_message(message.chat.id, "У меня нет имени..")
+    elif message.text == "Смотреть товары":
+        bot.send_message(message.chat.id, "Открыть каталог товаров")
 
-    elif message.text == "Что я могу?":
-        bot.send_message(message.chat.id, text="Поздороваться и помочь в выборе товара")
+    elif message.text == "оплата/доставка":
+        bot.send_message(
+            message.chat.id,
+            text="lorem ipsum dolor? lorem ipsum dolor. lorem ipsum dolor,lorem ipsum dolor?lorem ipsum dolor",
+        )
+    elif message.text == "другой вопрос":
+        bot.send_message(message.chat.id, "задайте вопрос, и я помогу")
 
-    elif message.text == "Вернуться в главное меню":
+    elif message.text == "главное меню":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        button1 = types.KeyboardButton("👋 Поздороваться")
-        button2 = types.KeyboardButton("❓ Задать вопрос")
+        button1 = types.KeyboardButton("Смотреть товары")
+        button2 = types.KeyboardButton("оплата/доставка")
         markup.add(button1, button2)
         bot.send_message(
             message.chat.id, text="Вы вернулись в главное меню", reply_markup=markup
